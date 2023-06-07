@@ -10,11 +10,11 @@ if (require.main === module) {
 function main () {
   try {
     const router = express();
-    const fs = require('fs');
-    const server = require('https').createServer({
-        key: fs.readFileSync('./privatekey.pem'),
-        cert: fs.readFileSync('./cert.pem'),
-    }, router);
+    // const fs = require('fs');
+    // const server = require('https').createServer({
+    //     key: fs.readFileSync('./privatekey.pem'),
+    //     cert: fs.readFileSync('./cert.pem'),
+    // }, router);
     const corsOptions = {
       origin: 'https://bbopu8pthsesrij6hl1sna.on.drv.tw',
       optionsSuccessStatus: 200 
@@ -49,7 +49,7 @@ function main () {
     
     const port = parseInt(process.env.PORT || '3000', 10)
 
-    server.listen(port, () => {
+    router.listen(port, () => {
       console.info(`Listening on ${port}`);
     })
   } catch (err) {
