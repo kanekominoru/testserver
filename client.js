@@ -29,7 +29,7 @@
 
 const fetchForm = document.querySelector('.fetchForm');
 const btn = document.querySelector('.btn');
-const url = "https://192.168.128.44:3000";
+const url = "https://testserver2-r4w6.onrender.com/";
 
 const postFetch = () => {
     // let formData = new FormData(fetchForm);
