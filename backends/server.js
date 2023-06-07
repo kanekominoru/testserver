@@ -34,7 +34,6 @@ function main () {
         res.set('Access-Control-Allow-Origin', 'https://bbopu8pthsesrij6hl1sna.on.drv.tw');
         const buffer = Buffer.concat(chunks)
         console.log(buffer.toString());
-        outputCsv();
         res.send({
           method: req.method,
           url: req.originalUrl,
@@ -56,32 +55,4 @@ function main () {
   } catch (err) {
     console.error(err);
   }
-}
-
-const outputCsv = () =>{
-  const Fs  = require('fs');
-  const { stringify } = require("csv-stringify/sync");
-  const Iconv = require('iconv-lite');
-
-  // OSがWindowsなら"USERPROFILE", Mac, Linuxは"HOME"を参照
-  var dir_home = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"];
-  var dir_desktop = require("path").join(dir_home, "Desktop");
-
-  let contents = [
-      { "年齢": "10", "名前": 'イチロー' },
-      { "年齢": "20", "名前": 'ジロー' },
-      { "年齢": "30", "名前": 'サブロー' },
-  ];
-  
-  // カンマ区切りへ変換する。
-  const csvString = stringify(contents, {
-      header: true,
-      quoted_string: true,
-  });
-  
-  // Shift_JSIへ変換する。
-  const csvStringSjis = Iconv.encode(csvString, 'Shift_JIS');
-  
-  // CSVファイルを出力する。
-  Fs.writeFileSync(`${dir_desktop}/result.txt`, csvStringSjis);
 }
