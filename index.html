@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <form class="fetchForm">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title text-center">面接評価表WEB</h5>
+                <h6 class="card-subtitle mb-2 text-muted">SunVertex採用課</h6>
+                <p class="card-text">        
+                    <!-- <div class="d-flex flex-column flex-md-row bd-highlight"> -->
+                        <div class="col-md-auto">
+                            <ul class="list-group">
+                                <li class="list-group-item"><input type="text" class="form-control" placeholder="希望案件1" aria-label="Username" aria-describedby="input-group-left"></li>
+                                <li class="list-group-item"><input type="text" class="form-control" placeholder="希望案件2" aria-label="Username" aria-describedby="input-group-left"></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-auto">
+                            <div class="input-group input-group-lg row-eq-height">
+                                <span class="input-group-text" id="input-group-lg-example">登録者名</span>
+                                <input type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg">
+                            </div>
+                        </div>
+                        <div class="col-md-auto">
+                            <select id="coordinator" class="form-select-lg  row-eq-height" aria-label="Default select">
+                                <option selected="">担当コーディネーターを選択して下さい</option>
+                                <option value="1">米山</option>
+                                <option value="2">佐藤</option>
+                                <option value="3">清水</option>
+                            </select>
+                        </div>
+                        <div class="col-md-auto">
+                            <div class="input-group input-group-lg row-eq-height">
+                                <span class="input-group-text" id="input-group-lg-example">面接日</span>
+                                <input type="text" class="form-control" aria-label="Large input group" aria-describedby="input-group-lg" name="datepicker" id="js-datepicker">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                
+                <div class="card-header">人物評価
+                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">【人物評価:加点方式 100点満点】</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="home2-tab" data-bs-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="false">【人物評価:減点方式】</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">【スキル評価:減点方式】</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="other-tab" data-bs-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">【その他要素】</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" id="disabled-tab" data-bs-toggle="tab" href="#disabled" role="tab" aria-controls="disabled" tabindex="-1" aria-selected="false">【グラフ】</a>
+                    </li>
+                </ul>
+                </div>
+                <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">                    
+                        <div class="accordion" id="accordionBasic">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    身だしなみ(15点)
+                                </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionBasic">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                            <th scope="col">点数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">清潔感</th>
+                                            <td>
+                                            <select id="select-seiketsu" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">◎</option>
+                                                <option value="2">○</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-seiketsu" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">体型</th>
+                                            <td>
+                                            <select id="select-taikei" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-taikei" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">頭髪</th>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">黒</option>
+                                                    <option value="2">黒髪戻し可</option>
+                                                    <option value="3">茶</option>
+                                                    <option value="4">その他</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ひげ</th>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">あり（剃れる）</option>
+                                                <option value="2">あり（剃れない）</option>
+                                                <option value="3">なし</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">香水</th>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">あり</option>
+                                                <option value="2">なし</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ピアス</th>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">あり</option>
+                                                <option value="2">なし</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">タトゥー</th>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">あり</option>
+                                                <option value="2">なし</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    マナー・常識・人柄（25点）
+                                </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionBasic">
+                                    <div class="accordion-body">
+                                        <div class="row manner">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">項目</th>
+                                                <th scope="col">評価</th>
+                                                <th scope="col">点数</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">挨拶の仕方</th>
+                                                <td>
+                                                <select id="select-aisatsu" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">×</option>
+                                                </select>
+                                                </td>
+                                                <td id="score-aisatsu" class="score">0</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">言葉遣いの丁寧さ</th>
+                                                <td>
+                                                <select id="select-kotobazukai" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">◎</option>
+                                                    <option value="2">○</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                                </td>
+                                                <td id="score-kotobazukai" class="score">0</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">面接時の姿勢・態度</th>
+                                                <td>
+                                                    <select id="select-taido" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">○</option>
+                                                        <option value="2">×</option>
+                                                    </select>
+                                                </td>
+                                                <td id="score-taido" class="score">0</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">誠実である</th>
+                                                <td>
+                                                    <select id="select-seizitsu" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                    </select>
+                                                </td>
+                                                <td id="score-seizitsu" class="score">0</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">履歴書の書き方</th>
+                                                <td>
+                                                    <select id="select-rirekisho" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                    </select>
+                                                </td>
+                                                <td id="score-rirekisho" class="score">0</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    コミュニケーション能力（25点）
+                                </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionBasic">
+                                    <div class="accordion-body">
+                                        <div class="row communication">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">項目</th>
+                                                    <th scope="col">評価</th>
+                                                    <th scope="col">点数</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">職歴の説明がきちんとできる</th>
+                                                    <td>
+                                                    <select id="select-shokureki" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                    </select>
+                                                    </td>
+                                                    <td id="score-shokureki" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">説明したことが理解できている</th>
+                                                    <td>
+                                                        <select id="select-setsumeirikai" class="form-select" aria-label="Default select">
+                                                            <option selected="">選択してください</option>
+                                                            <option value="1">◎</option>
+                                                            <option value="2">○</option>
+                                                            <option value="3">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-setsumeirikai" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">会話のキャッチボールが<br>スムーズにできる</th>
+                                                    <td>
+                                                        <select id="select-kaiwa" class="form-select" aria-label="Default select">
+                                                            <option selected="">選択してください</option>
+                                                            <option value="1">◎</option>
+                                                            <option value="2">○</option>
+                                                            <option value="3">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-kaiwa" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">社交的である</th>
+                                                    <td>
+                                                        <select id="select-shakoteki" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-shakoteki" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">協調性がある</th>
+                                                    <td>
+                                                        <select id="select-kyochosei" class="form-select" aria-label="Default select">
+                                                            <option selected="">選択してください</option>
+                                                            <option value="1">◎</option>
+                                                            <option value="2">○</option>
+                                                            <option value="3">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-kyochosei" class="score">0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    キャリア評価（35点）
+                                </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionBasic">
+                                    <div class="accordion-body">
+                                        <div class="row carrier">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">項目</th>
+                                                    <th scope="col">評価</th>
+                                                    <th scope="col">点数</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">就業意欲</th>
+                                                    <td>
+                                                    <select id="select-iyoku" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">○</option>
+                                                        <option value="2">×</option>
+                                                    </select>
+                                                    </td>
+                                                    <td id="score-iyoku" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">仕事の継続性</th>
+                                                    <td>
+                                                    <select id="select-keizokusei" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                    </select>
+                                                    </td>
+                                                    <td id="score-keizokusei" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">ストレス耐性</th>
+                                                    <td>
+                                                        <select id="select-stress" class="form-select" aria-label="Default select">
+                                                            <option selected="">選択してください</option>
+                                                            <option value="1">○</option>
+                                                            <option value="2">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-stress" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">希望職種の経験</th>
+                                                    <td>
+                                                        <select id="select-keiken" class="form-select" aria-label="Default select">
+                                                        <option selected="">選択してください</option>
+                                                        <option value="1">◎</option>
+                                                        <option value="2">○</option>
+                                                        <option value="3">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-keiken" class="score">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">高卒以上</th>
+                                                    <td>
+                                                        <select id="select-gakureki" class="form-select" aria-label="Default select">
+                                                            <option selected="">選択してください</option>
+                                                            <option value="1">○</option>
+                                                            <option value="2">×</option>
+                                                        </select>
+                                                    </td>
+                                                    <td id="score-gakureki" class="score">0</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                
+                                </div>
+                
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="home2" role="tabpanel" aria-labelledby="home2-tab">                    
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">項目</th>
+                                <th scope="col">評価</th>
+                                <th scope="col">点数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">時間管理</th>
+                                    <td>
+                                    <select id="select-zikankanri" class="form-select" aria-label="Default select">
+                                        <option selected="">選択してください</option>
+                                        <option value="1">○</option>
+                                        <option value="2">×</option>
+                                    </select>
+                                    </td>
+                                    <td id="score-zikankanri" class="score">0</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">計算</th>
+                                    <td>
+                                    <select id="select-keisanmondai" class="form-select" aria-label="Default select">
+                                        <option selected="">選択してください</option>
+                                        <option value="1">○</option>
+                                        <option value="2">△</option>
+                                        <option value="3">×</option>
+                                    </select>
+                                    </td>
+                                    <td id="score-keisanmondai" class="score">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="accordion" id="accordionBasic2">
+                            <!-- 人物加点 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                    スキル評価(製造系)
+                                </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse minus-seizo" aria-labelledby="headingFive" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                            <th scope="col">点数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">PC製造系入力(ローマ字入力)</th>
+                                            <td>
+                                            <select id="select-romaji" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-romaji"" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">指先検査(15個以上)</th>
+                                            <td>
+                                            <select id="select-yubisaki" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-yubisaki" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">クリーンルーム経験</th>
+                                            <td>
+                                            <select id="select-cleanroom" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-cleanroom" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">交代勤務経験</th>
+                                            <td>
+                                            <select id="select-kotaikinmu" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-kotaikinmu" class="score">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- 人物減点 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                    スキル評価(事務系・技術系・語学事務系)
+                                </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse minus-zimu" aria-labelledby="headingSix" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                            <th scope="col">点数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">WORD(PC入力)</th>
+                                            <td>
+                                            <select id="select-word" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-word"" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">EXCEL(表)</th>
+                                            <td>
+                                            <select id="select-excel_sheet" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-excel_sheet" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">EXCEL(関数)</th>
+                                            <td>
+                                            <select id="select-excel_function" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-excel_function" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">EXCEL(グラフ)</th>
+                                            <td>
+                                            <select id="select-excel_graph" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-excel_graph" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">POWERPOINT</th>
+                                            <td>
+                                            <select id="select-powerpoint" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-powerpoint"" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ACCESS</th>
+                                            <td>
+                                            <select id="select-access" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-access"" class="score">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- その他 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                    スキル評価(語学系)
+                                </button>
+                                </h2>
+                                <div id="collapseSeven" class="accordion-collapse collapse minus-gogaku" aria-labelledby="headingSeven" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                            <th scope="col">点数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">外国語=>日本語</th>
+                                            <td>
+                                            <select id="select-transintoj" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-transintoj" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">日本語=>外国語</th>
+                                            <td>
+                                            <select id="select-transintof" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-transintof" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">TOEIC※英語希望者のみ対象</th>
+                                            <td class="td-toeic">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">スコア</span>
+                                                    <input type="text" class="form-control input-toeic" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">点</span>
+                                                </div>
+                                            </td>
+                                            <td id="score-toeic" class="score">0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">日本語能力検定※外国人のみ対象</th>
+                                            <td>
+                                            <select id="select-japanese" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">N1</option>
+                                                <option value="2">N2</option>
+                                                <option value="3">N3</option>
+                                                <option value="4">無資格</option>
+                                            </select>
+                                            </td>
+                                            <td id="score-japanese" class="score">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+                        <div class="accordion" id="accordionBasic2">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingEight">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                                    Keyboard Master
+                                </button>
+                                </h2>
+                                <div id="collapseEight" class="accordion-collapse collapse minus-seizo" aria-labelledby="headingEight" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">結果</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">入力文字数</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-mojisu" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">文字/分</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ブラインドタッチ</th>
+                                            <td>
+                                            <select id="select-blindtouch" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">所要時間</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="mm分ss秒" data-slots="ms" class="form-control input-syoyozikan1" aria-label="数字のみ入力">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">確度</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-kakudo" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingNine">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                                    指先検査
+                                </button>
+                                </h2>
+                                <div id="collapseNine" class="accordion-collapse collapse minus-zimu" aria-labelledby="headingNine" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-yubisakikosu" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">個/90秒</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTen">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+                                    翻訳
+                                </button>
+                                </h2>
+                                <div id="collapseTen" class="accordion-collapse collapse minus-gogaku" aria-labelledby="headingTen" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">評価</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">外国語=>日本語</th>
+                                            <td class="td-ftoj">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">スコア</span>
+                                                    <input type="text" class="form-control input-ftoj" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">/100点</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">日本語=>外国語</th>
+                                            <td class="td-jtof">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">スコア</span>
+                                                    <input type="text" class="form-control input-jtof" placeholder="数字のみ入力" aria-label="数字のみ入力">
+                                                    <span class="input-group-text">/100点</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwelve">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                                    EXCEL詳細
+                                </button>
+                                </h2>
+                                <div id="collapseTwelve" class="accordion-collapse collapse minus-seizo" aria-labelledby="headingTwelve" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">結果</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">どれほど使えているか</th>
+                                            <td>
+                                            <select id="select-excel_enable" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">所要時間</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" placeholder="mm分ss秒" data-slots="ms" class="form-control input-syoyozikan1" aria-label="数字のみ入力">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">オートフィル</th>
+                                            <td>
+                                                <select id="select-autofill" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">罫線</th>
+                                            <td>
+                                                <select id="select-kakesen" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">セルの結合</th>
+                                            <td>
+                                                <select id="select-ketsugo" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">桁区切り</th>
+                                            <td>
+                                                <select id="select-ketakugiri" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">合計</th>
+                                            <td>
+                                                <select id="select-goukei" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">平均</th>
+                                            <td>
+                                                <select id="select-heikin" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">グラフ化</th>
+                                            <td>
+                                                <select id="select-graphka" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">グラフ変更</th>
+                                            <td>
+                                                <select id="select-graphhenko" class="form-select" aria-label="Default select">
+                                                    <option selected="">選択してください</option>
+                                                    <option value="1">○</option>
+                                                    <option value="2">△</option>
+                                                    <option value="3">×</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThirteen">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                                    入居者限定
+                                </button>
+                                </h2>
+                                <div id="collapseThirteen" class="accordion-collapse collapse minus-seizo" aria-labelledby="headingThirteen" data-bs-parent="#accordionBasic2">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">項目</th>
+                                            <th scope="col">結果</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">所持金(3万円以上)</th>
+                                            <td>
+                                            <select id="select-syozikin" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">赴任費準備</th>
+                                            <td>
+                                            <select id="select-hunihizyunbi" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">×</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">携帯電話所持</th>
+                                            <td>
+                                            <select id="select-keitaisyozi" class="form-select" aria-label="Default select">
+                                                <option selected="">選択してください</option>
+                                                <option value="1">○</option>
+                                                <option value="2">△(準備可)</option>
+                                                <option value="3">×</option>
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="disabled" role="tabpanel" aria-labelledby="disabled-tab">
+                        <div class="Result">
+                            <div class="resultscore">人物評価:0点</div>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                まとめ
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">面接者所見</h5>
+                <p class="card-text">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"></textarea>
+                    </div>
+                </p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※キャンペーンは説明したか？
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckDefault">
+                            <label class="form-check-label" for="formCheckDefault">はい</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※渡した募集要項
+                    </div>
+                    <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">派遣先</th>
+                            <th scope="col">過去の勤務の有無</th>
+                            <th scope="col">いつ頃？</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-hakensakimei1">
+                                </div>
+                            </th>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="formSwitchCheckDefault">
+                                    <label class="form-check-label" for="formSwitchCheckDefault">有</label>
+                                </div>
+                            </td>
+                            <td>
+                                <select id="select-hakensakimei1_when" class="form-select" aria-label="Default select">
+                                    <option selected="">選択してください</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-hakensakimei2">
+                                </div>
+                            </th>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="formSwitchCheckDefault">
+                                    <label class="form-check-label" for="formSwitchCheckDefault">有</label>
+                                </div>
+                            </td>
+                            <td>
+                                <select id="select-hakensakimei2_when" class="form-select" aria-label="Default select">
+                                    <option selected="">選択してください</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※友人紹介は確認したか？
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="formCheckDefault">
+                            <label class="form-check-label" for="formCheckDefault">はい</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※身分証明書確認
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">免許証</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">住基カード</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">国民健康保険</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">住民票</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">在留カード</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">パスポート</label>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-text">その他
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Radio for following text input">
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with checkbox">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                外国人の方の登録時の注意！！ <strong>①パスポート  ②在留カード </strong> (①②の日付(期限)の確認、両面コピーを忘れずに！！)
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※登録時のプレゼント
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">お水</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">お茶</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckDefault">
+                            <label class="form-check-label" for="inlineCheckDefault">ティッシュ</label>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-text">その他
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Radio for following text input">
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        ※LINE友達登録
+                    </div>
+                    <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">登録の有無</th>
+                            <th scope="col">プレゼントの中身</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="formSwitchCheckDefault">
+                                    <label class="form-check-label" for="formSwitchCheckDefault">有</label>
+                                </div>
+                            </td>
+                            <td>
+                                <select id="select-present" class="form-select" aria-label="Default select">
+                                    <option selected="">選択してください</option>
+                                    <option value="1">スポーツカー</option>
+                                    <option value="2">ソフトボール応援グッズ</option>
+                                    <option value="3">もつ煮込み</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+            <button id="send" type="button" class="btn btn-primary">送信する</button>
+        </form>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+    <!-- <script src="node_modules/flatpickr/dist/flatpickr.min.js"></script> -->
+    <!-- 日本語化する場合は下記を追記 -->
+    <script src="./client.js"></script>
+    <script src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+    <script>
+      flatpickr('#js-datepicker', {
+        locale     : 'ja',
+        dateFormat : 'Y.m.d（D）', 
+        defaultDate: new Date() 
+      });
+    </script>
+    
+</body>
+</html>
