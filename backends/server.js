@@ -62,7 +62,11 @@ const outputCsv = () =>{
   const Fs  = require('fs');
   const { stringify } = require("csv-stringify/sync");
   const Iconv = require('iconv-lite');
-  
+
+  // OSがWindowsなら"USERPROFILE", Mac, Linuxは"HOME"を参照
+  var dir_home = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"];
+  var dir_desktop = require("path").join(dir_home, "Desktop");
+
   let contents = [
       { "年齢": "10", "名前": 'イチロー' },
       { "年齢": "20", "名前": 'ジロー' },
@@ -79,5 +83,5 @@ const outputCsv = () =>{
   const csvStringSjis = Iconv.encode(csvString, 'Shift_JIS');
   
   // CSVファイルを出力する。
-  Fs.writeFileSync("result.txt", csvStringSjis);
+  Fs.writeFileSync(`${dir_desktop}/result.txt`, csvStringSjis);
 }
